@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { fetchPhotos } from "./REDUX/thunk/thunk"; // Adjust path as necessary
+import "./App.css";
+import PhotoGrid from "./components/PhotoGrid"; // Adjust path as necessary
+import CategorySelector from "./components/CategorySelector";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchPhotos("sports", 1)); // Fetch photos on initial load
+  }, [dispatch]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      ,<CategorySelector />
+      <PhotoGrid />
     </div>
   );
 }
