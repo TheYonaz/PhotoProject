@@ -1,24 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setCurrentPage } from "../REDUX/actions/photoActions"; // Adjust path as necessary
+import {
+  setCurrentPage,
+  setCurrentCategory,
+} from "../REDUX/actions/photoActions";
 import { fetchPhotos } from "../REDUX/thunk/thunk";
 
 const CategorySelector = () => {
   const dispatch = useDispatch();
-  const categories = ["sports", "nature", "animals"]; // Example categories
+  const [inputCategory, setInputCategory] = useState("");
+  const [error, setError] = useState(""); // State for error message
 
-  const handleCategoryChange = (category) => {
+  const handleSearch = () => {
+    // Clear previous error
+    setError("");
+
+    if (inputCategory.trim() === "") {
+      setError("Please enter a category before searching.");
+      return;
+    }
+
+    dispatch(setCurrentCategory(inputCategory));
     dispatch(setCurrentPage(1));
-    dispatch(fetchPhotos(category, 1));
+    dispatch(fetchPhotos(inputCategory, 1));
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
   };
 
   return (
     <div>
-      {categories.map((category) => (
-        <button key={category} onClick={() => handleCategoryChange(category)}>
-          {category}
-        </button>
-      ))}
+      <input
+        type="text"
+        value={inputCategory}
+        onChange={(e) => setInputCategory(e.target.value)}
+        onKeyDown={handleKeyPress}
+      />
+      <button onClick={handleSearch}>Search</button>
+      {error && <div style={{ color: "red" }}>{error}</div>}{" "}
+      {/* Display error message */}
     </div>
   );
 };

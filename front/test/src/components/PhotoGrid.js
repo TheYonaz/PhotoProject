@@ -6,22 +6,20 @@ import { setCurrentPage } from "../REDUX/actions/photoActions"; // Keep this imp
 import { fetchPhotos } from "../REDUX/thunk/thunk";
 const PhotoGrid = () => {
   const dispatch = useDispatch();
-  const { photos, loading, error, currentPage } = useSelector(
+  const { photos, loading, error, currentPage, currentCategory } = useSelector(
     (state) => state.photos
-  ); // Destructure currentPage from state
+  );
 
-  // Handler for the next page
   const handleNextPage = () => {
     const nextPage = currentPage + 1;
     dispatch(setCurrentPage(nextPage));
-    dispatch(fetchPhotos("sports", nextPage)); // You may want to manage the category dynamically
+    dispatch(fetchPhotos(currentCategory, nextPage));
   };
 
-  // Handler for the previous page
   const handlePrevPage = () => {
     const prevPage = currentPage > 1 ? currentPage - 1 : 1;
     dispatch(setCurrentPage(prevPage));
-    dispatch(fetchPhotos("sports", prevPage)); // You may want to manage the category dynamically
+    dispatch(fetchPhotos(currentCategory, prevPage));
   };
 
   if (loading) return <div>Loading...</div>;

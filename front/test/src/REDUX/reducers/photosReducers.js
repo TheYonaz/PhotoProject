@@ -3,13 +3,15 @@ import {
   FETCH_PHOTOS_SUCCESS,
   FETCH_PHOTOS_FAILURE,
   SET_CURRENT_PAGE,
+  SET_CURRENT_CATEGORY,
 } from "../actions/photoActions";
 
 const initialState = {
   loading: false,
   photos: [],
   error: null,
-  currentPage: 1, // Initialize currentPage in the state
+  currentPage: 1,
+  currentCategory: "sports", // Default category
 };
 
 const photosReducer = (state = initialState, action) => {
@@ -22,6 +24,8 @@ const photosReducer = (state = initialState, action) => {
       return { ...state, loading: false, error: action.payload };
     case SET_CURRENT_PAGE: // Include this case inside the switch
       return { ...state, currentPage: action.payload };
+    case SET_CURRENT_CATEGORY:
+      return { ...state, currentCategory: action.payload };
     default:
       return state;
   }
