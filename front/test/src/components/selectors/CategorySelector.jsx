@@ -1,3 +1,4 @@
+// Component to select and search for images by category
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import {
@@ -15,16 +16,19 @@ const CategorySelector = () => {
     // Clear previous error
     setError("");
 
+    // Check if input is empty before searching
     if (inputCategory.trim() === "") {
       setError("Please enter a category before searching.");
       return;
     }
 
+    // Dispatch actions to set category, page, and fetch photos
     dispatch(setCurrentCategory(inputCategory));
     dispatch(setCurrentPage(1));
     dispatch(fetchPhotos(inputCategory, 1));
   };
 
+  // Handle 'Enter' key press for search
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       handleSearch();

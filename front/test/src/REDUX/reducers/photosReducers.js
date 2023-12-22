@@ -1,3 +1,4 @@
+// Reducer to handle photo-related actions
 import {
   FETCH_PHOTOS_START,
   FETCH_PHOTOS_SUCCESS,
@@ -10,8 +11,8 @@ const initialState = {
   loading: false,
   photos: [],
   error: null,
-  currentPage: 1,
-  currentCategory: "sports", // Default category
+  currentPage: 1, // Tracking the current page
+  currentCategory: "sports", // Default category for photo fetching
 };
 
 const photosReducer = (state = initialState, action) => {
@@ -22,7 +23,7 @@ const photosReducer = (state = initialState, action) => {
       return { ...state, loading: false, photos: action.payload };
     case FETCH_PHOTOS_FAILURE:
       return { ...state, loading: false, error: action.payload };
-    case SET_CURRENT_PAGE: // Include this case inside the switch
+    case SET_CURRENT_PAGE:
       return { ...state, currentPage: action.payload };
     case SET_CURRENT_CATEGORY:
       return { ...state, currentCategory: action.payload };

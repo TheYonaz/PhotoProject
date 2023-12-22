@@ -1,7 +1,8 @@
-// SortingBar.js
+// Component for sorting options
 import React from "react";
 
 const SortingBar = ({ currentSort, handleSortChange }) => {
+  // Dropdown for sorting options
   return (
     <div>
       <select
@@ -12,6 +13,7 @@ const SortingBar = ({ currentSort, handleSortChange }) => {
         <option value="latest">Latest</option>
         <option value="id">ID</option>
         <option value="date">Date</option>
+        {/* More sorting options can be added here */}
       </select>
     </div>
   );

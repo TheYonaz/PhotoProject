@@ -1,11 +1,11 @@
-// Define action types
+// Action type constants
 export const FETCH_PHOTOS_START = "FETCH_PHOTOS_START";
 export const FETCH_PHOTOS_SUCCESS = "FETCH_PHOTOS_SUCCESS";
 export const FETCH_PHOTOS_FAILURE = "FETCH_PHOTOS_FAILURE";
 export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
-export const SET_CURRENT_CATEGORY = "SET_CURRENT_CATEGORY"; // New action type
+export const SET_CURRENT_CATEGORY = "SET_CURRENT_CATEGORY";
 
-// Define action creators
+// Action creators for dispatching actions
 export const fetchPhotosStart = () => ({ type: FETCH_PHOTOS_START });
 export const fetchPhotosSuccess = (photos) => ({
   type: FETCH_PHOTOS_SUCCESS,
@@ -20,7 +20,6 @@ export const setCurrentPage = (page) => ({
   payload: page,
 });
 export const setCurrentCategory = (category) => ({
-  // New action creator
   type: SET_CURRENT_CATEGORY,
   payload: category,
 });

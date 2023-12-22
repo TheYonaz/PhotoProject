@@ -1,3 +1,4 @@
+// Main component displaying the grid of photos
 import React, { useState } from "react";
 import styles from "../PhotoGrid.module.css";
 import Modal from "./photoInfo/Modal";
@@ -17,6 +18,8 @@ const PhotoGrid = () => {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [currentSort, setCurrentSort] = useState("popular");
   const [showSortingBar, setShowSortingBar] = useState(false);
+
+  // Handlers for pagination and photo selection
 
   const handleNextPage = () => {
     const nextPage = currentPage + 1;
@@ -47,11 +50,14 @@ const PhotoGrid = () => {
     setShowSortingBar(!showSortingBar);
   };
 
+  // Render loading, error or the photo grid
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
   return (
     <div className={styles.photoGridContainer}>
+      {/* Components for sorting, categories, and pagination */}
       <button onClick={toggleSortingBar}>Sort Options</button>
       {showSortingBar && (
         <>
