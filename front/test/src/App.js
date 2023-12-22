@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { fetchPhotos } from "./REDUX/thunk/thunk"; // Adjust path as necessary
 import "./App.css";
 import PhotoGrid from "./components/PhotoGrid"; // Adjust path as necessary
-import CategorySelector from "./components/CategorySelector";
 
 function App() {
   const dispatch = useDispatch();
@@ -14,7 +13,6 @@ function App() {
 
   return (
     <div className="App">
-      ,<CategorySelector />
       <PhotoGrid />
     </div>
   );

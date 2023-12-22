@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import {
   setCurrentPage,
   setCurrentCategory,
-} from "../REDUX/actions/photoActions";
-import { fetchPhotos } from "../REDUX/thunk/thunk";
+} from "../../REDUX/actions/photoActions";
+import { fetchPhotos } from "../../REDUX/thunk/thunk";
 
 const CategorySelector = () => {
   const dispatch = useDispatch();
